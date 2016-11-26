@@ -1,0 +1,69 @@
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+body {
+  margin: 0;
+  font-size: 13px;
+}
+.container {
+    width: 300px;
+}
+#progress {
+    width: 100%;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#4cCA832E', endColorstr='#4cCA832E');
+}
+.progress-bar-container {
+	width: 100%;
+	border: 1px solid #ccc;
+	height: 20px;
+	margin: 10px;
+	height: 30px;
+}
+.progress-bar {
+    background: #86bbe0;
+    width: 100%;
+    text-indent: 50%;
+    height: 20px;
+    padding: 5px 0;
+	display: block;
+	max-width: 100%;
+}
+.progress-bar::after {
+    content: "%";
+}
+.red {
+	background: red;
+}
+#select-bar-controls {
+	float: left;
+    margin: 10px;
+}
+#btn-bar-controls button {
+	margin:10px;
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px) {
+	.container {
+		width: 80%;
+	}
+}
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+	.container {
+		width: 50%;
+	}
+}
