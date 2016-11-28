@@ -101,7 +101,7 @@ function animateBarControl(event){
 }
 
 //call API services
- AJAXRequest('//pb-api.herokuapp.com/bars', callback, failCallback);
+ AJAXRequest('//frontend-exercise.apps.staging.digital.gov.au/bars', callback, failCallback);
 
 
 
