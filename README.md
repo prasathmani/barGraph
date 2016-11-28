@@ -15,3 +15,6 @@ Version control (git) <br/>
 
 ---
 Endpoint: http://pb-api.herokuapp.com/bars
+
+<h2> Demo </h2>
+<a href="//prasathmani.github.io/barGraph/" target="_blank">prasathmani.github.io/barGraph/</a>
