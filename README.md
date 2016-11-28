@@ -1,6 +1,6 @@
-Progress Bars
+<h1> Progress Bars </h1>
 
-Requirements
+<h3>Requirements</h3>
 
 Must read data from the endpoint <br/>
 Multiple bars  <br/>
