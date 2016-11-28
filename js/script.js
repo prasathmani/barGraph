@@ -101,7 +101,7 @@ function animateBarControl(event){
 }
 
 //call API services
- AJAXRequest('http://pb-api.herokuapp.com/bars', callback, failCallback);
+ AJAXRequest('//pb-api.herokuapp.com/bars', callback, failCallback);
 
 
 
