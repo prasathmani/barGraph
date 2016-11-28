@@ -20,4 +20,4 @@ Endpoint: http://pb-api.herokuapp.com/bars
 <a href="//prasathmani.github.io/barGraph/" target="_blank">prasathmani.github.io/barGraph/</a>
 
 
-<strong>Read Full Requirements:</strong> <a href="frontend-exercise.apps.staging.digital.gov.au/">http://frontend-exercise.apps.staging.digital.gov.au/</a> 
+<strong>Read Full Requirements:</strong> <a href="frontend-exercise.apps.staging.digital.gov.au/" target="_bank">http://frontend-exercise.apps.staging.digital.gov.au/</a> 
