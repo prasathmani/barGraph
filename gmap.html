@@ -15,7 +15,9 @@
 #map-canvas img {
 	max-width: none !important;
 }
-
+.box-title {
+	display: flex;
+}
 .box-left {
     float: left;
 }
@@ -34,6 +36,13 @@
 .box-right {
     float: right;
     margin-left: 15px;
+}
+
+.gtitle {
+	font-weight: bold;
+}
+.gtitle p {
+	font-weight: normal;
 }
 
 </style>
@@ -58,9 +67,9 @@
   // Data for the markers consisting of a name, a LatLng and a zIndex for the
   // order in which these markers should display on top of each other.
   var locations = [
-      ['Reserva da la Biosfera Calakmul', 18.993357, -89.586933, '//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg', 'small'],
-      ['Reserva de Biosfera Maya', 17.455220, -89.935566, '//d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX20712883.jpg', 'medium'],
-      ['Parque Natural Montes Azules', 16.892614, -91.363669, '//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg', 'large']
+      ['Reserva da la Biosfera Calakmul', 18.993357, -89.586933, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.', '//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg', 'small'],
+      ['Reserva de Biosfera Maya', 17.455220, -89.935566, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '//d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX20712883.jpg', 'medium'],
+      ['Parque Natural Montes Azules', 16.892614, -91.363669, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.', '//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg', 'large']
   ];
 
   function setMarkers(map) {
@@ -92,8 +101,9 @@
                   icon: image,
                   map: map,
                   title: marker[0],
-                  class: marker[4],
-                  image: marker[3],
+				  class: marker[5],
+                  desc: marker[3],
+                  image: marker[4],
                   zIndex: 1,
                   position: {lat: marker[1], lng: marker[2]}
               });
@@ -103,7 +113,8 @@
                   iwindow.setContent('<div class="project-box" >'+
                       '<div class="box-title">'+
                       '<div class="box-left"><img src="'+marker.image+'" alt="title" class="'+marker.class+'"></div>'+
-                      '<div class="box-right name">'+marker.title+'</div>'+
+                      '<div class="box-right gtitle">'+marker.title+
+					  '<p class="desc">'+marker.desc+'<p></div>'+
                       '</div></div>');
                   iwindow.open(map, marker);
               });
