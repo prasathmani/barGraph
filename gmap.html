@@ -15,15 +15,6 @@
 #map-canvas img {
 	max-width: none !important;
 }
-/*.gm-style-iw {*/
-	/*width: 350px !important;*/
-	/*top: 15px !important;*/
-	/*left: 0px !important;*/
-	/*background-color: #fff;*/
-	/*box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);*/
-	/*border: 1px solid rgba(72, 181, 233, 0.6);*/
-	/*border-radius: 2px 2px 10px 10px;*/
-/*}*/
 
 .box-left {
     float: left;
@@ -51,7 +42,7 @@
 
   <div id="map-canvas"/>
 
-  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDRL_xJqGkwWPG0cg4wrCV9u6CO6H7jheI"></script>
+  <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDRL_xJqGkwWPG0cg4wrCV9u6CO6H7jheI"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   
   <script>
@@ -67,9 +58,9 @@
   // Data for the markers consisting of a name, a LatLng and a zIndex for the
   // order in which these markers should display on top of each other.
   var locations = [
-      ['Reserva da la Biosfera Calakmul', 18.993357, -89.586933, 'https://jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg', 'small'],
-      ['Reserva de Biosfera Maya', 17.455220, -89.935566, 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX20712883.jpg', 'medium'],
-      ['Parque Natural Montes Azules', 16.892614, -91.363669, 'http://www.encyclopediaofukraine.com/pic%5CJ%5CU%5CJuniper%20trees%20in%20Carpathian%20Mountains.jpg', 'large']
+      ['Reserva da la Biosfera Calakmul', 18.993357, -89.586933, '//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg', 'small'],
+      ['Reserva de Biosfera Maya', 17.455220, -89.935566, '//d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX20712883.jpg', 'medium'],
+      ['Parque Natural Montes Azules', 16.892614, -91.363669, '//www.encyclopediaofukraine.com/pic%5CJ%5CU%5CJuniper%20trees%20in%20Carpathian%20Mountains.jpg', 'large']
   ];
 
   function setMarkers(map) {
