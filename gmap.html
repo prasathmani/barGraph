@@ -6,16 +6,16 @@
     <title>Google Map</title>
 
 <style>
-#map-canvas {
+#draw-map {
 	margin: 0;
 	padding: 0;
 	height: 500px;
 	max-width: none;
 }
-#map-canvas img {
+#draw-map img {
 	max-width: none !important;
 }
-.box-title {
+.info-window--box {
 	display: flex;
 }
 .box-left {
@@ -38,41 +38,124 @@
     margin-left: 15px;
 }
 
-.gtitle {
-	font-weight: bold;
-}
-.gtitle p {
-	font-weight: normal;
+.info-window-template, .map-directions {
+    display: none;
 }
 
 </style>
 </head>
 <body>
 
-  <div id="map-canvas"/>
+<div class="google-map">
+    <div
+    data-title="Reserva da la Biosfera Calakmul"
+    data-lat="18.993357"
+    data-lag="-89.586933"
+    data-desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
+    data-img="//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg" class="map-directions">
+        Reserva da la Biosfera Calakmul
+    </div>
+
+    <div
+            data-title="Reserva de Biosfera Maya"
+            data-lat="17.455220"
+            data-lag="-89.935566"
+            data-desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
+            data-img="//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg" class="map-directions">
+        Reserva de Biosfera Maya
+    </div>
+
+    <div
+            data-title="Parque Natural Montes Azules"
+            data-lat="16.892614"
+            data-lag="-91.363669"
+            data-desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
+            data-img="//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg" class="map-directions">
+        Parque Natural Montes Azules
+    </div>
+
+    <div class="info-window-template">
+        <div class="info-window--box">
+            <div class="box-left">
+                <img src="{{IMAGE}}" alt="title" class="large">
+            </div>
+            <div class="box-right">
+                <strong>{{TITLE}}</strong>
+                <p class="desc">{{DESC}}<p>
+                <p><a href="{{DIRECTION}}" target="_blank">Get Directions</a> </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="draw-map" id="draw-map"></div>
+
+</div>
+
+<br>
+<hr>
+<br>
+
+<div class="google-map">
+    <div
+            data-title="Yengo National Park"
+            data-lat="-33.041744"
+            data-lag="150.913610"
+            data-desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
+            data-img="//www.newhdwallpapers.in/wp-content/uploads/2017/06/Australia-Forest-Sherbrooke-Victoria-Trees.jpg" class="map-directions">
+        Reserva da la Biosfera Calakmul
+    </div>
+
+    <div
+            data-title="Kanangra-Boyd National Park"
+            data-lat="-33.971197"
+            data-lag="150.129268"
+            data-desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
+            data-img="//www.newhdwallpapers.in/wp-content/uploads/2017/06/Australia-Forest-Sherbrooke-Victoria-Trees.jpg" class="map-directions">
+        Reserva de Biosfera Maya
+    </div>
+
+    <div
+            data-title="Burragorang"
+            data-lat="-33.965502"
+            data-lag="150.533016"
+            data-desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
+            data-img="//www.newhdwallpapers.in/wp-content/uploads/2017/06/Australia-Forest-Sherbrooke-Victoria-Trees.jpg" class="map-directions">
+        Parque Natural Montes Azules
+    </div>
+
+    <div class="info-window-template">
+        <div class="info-window--box">
+            <div class="box-left">
+                <img src="{{IMAGE}}" alt="title" class="medium">
+            </div>
+            <div class="box-right">
+                <strong>{{TITLE}}</strong>
+                <p class="desc">{{DESC}}<p>
+                <p><a href="{{DIRECTION}}" target="_blank">Get Directions</a> </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="draw-map" id="draw-map"></div>
+
+</div>
+
 
   <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDRL_xJqGkwWPG0cg4wrCV9u6CO6H7jheI"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   
   <script>
-  function initMap() {
-      var map = new google.maps.Map(document.getElementById('map-canvas'), {
+  function initMap($target, locationList, infoWindowHtml) {
+      var map = new google.maps.Map($target[0], {
           zoom: 7,
           center: {lat: 18.2, lng: -89.5},
       });
 
-      setMarkers(map);
+     setMarkers(map, locationList, infoWindowHtml);
   }
 
-  // Data for the markers consisting of a name, a LatLng and a zIndex for the
-  // order in which these markers should display on top of each other.
-  var locations = [
-      ['Reserva da la Biosfera Calakmul', 18.993357, -89.586933, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.', '//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg', 'small'],
-      ['Reserva de Biosfera Maya', 17.455220, -89.935566, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '//d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX20712883.jpg', 'medium'],
-      ['Parque Natural Montes Azules', 16.892614, -91.363669, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.', '//jagannathpurihkm.files.wordpress.com/2017/07/trees1.jpg', 'large']
-  ];
-
-  function setMarkers(map) {
+  function setMarkers(map, locations, infoWindowHtml) {
+      console.table(locations);
       // Adds markers to the map.
 
       // Marker sizes are expressed as a Size of X,Y where the origin of the image
@@ -94,6 +177,9 @@
           maxWidth: 350
       });
 
+      // instantiate the bounds object
+      var bounds = new google.maps.LatLngBounds();
+
       for (var i = 0; i < locations.length; i++) {
           (function(marker) {
               var marker = new google.maps.Marker({
@@ -101,29 +187,57 @@
                   icon: image,
                   map: map,
                   title: marker[0],
-				  class: marker[5],
                   desc: marker[3],
                   image: marker[4],
                   zIndex: 1,
-                  position: {lat: marker[1], lng: marker[2]}
+                  direction: `https://www.google.com/maps/dir/${marker[1]},${marker[2]}`,
+                  position: {lat: Number(marker[1]), lng: Number(marker[2])}
               });
+
+              var locationLatLng =  new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+              bounds.extend(locationLatLng);
 
               google.maps.event.addDomListener(marker, 'click', function() {
                   iwindow.close();
-                  iwindow.setContent('<div class="project-box" >'+
-                      '<div class="box-title">'+
-                      '<div class="box-left"><img src="'+marker.image+'" alt="title" class="'+marker.class+'"></div>'+
-                      '<div class="box-right gtitle">'+marker.title+
-					  '<p class="desc">'+marker.desc+'<p></div>'+
-                      '</div></div>');
+                  var _template = infoWindowHtml.replace(/{{TITLE}}/g, marker.title)
+                      .replace(/{{IMAGE}}/g, marker.image)
+                      .replace(/{{DESC}}/g, marker.desc)
+                      .replace(/{{DIRECTION}}/g, marker.direction);
+
+                  iwindow.setContent(_template);
                   iwindow.open(map, marker);
               });
           })(locations[i]);
       }
 
+      map.fitBounds(bounds);       // auto-zoom
+      map.panToBounds(bounds);     // auto-center
+
   }
 
-  google.maps.event.addDomListener(window, 'load', initMap);
+
+  $(function() {
+    $('.google-map').each(function() {
+        var locationArr = [];
+        var infoTemplate = '';
+        var targetEl = $(this).find('.draw-map');
+        $(this).children().each(function(index, element){
+            //create locations array
+            if($(element).hasClass('map-directions')){
+                var _arr = [$(element).data('title'), $(element).data('lat'), $(element).data('lag'), $(element).data('desc'), $(element).data('img')];
+                locationArr.push(_arr);
+            }
+
+            //get info window template
+            if($(element).hasClass('info-window-template')){
+                infoTemplate = $(element).html();
+            }
+        });
+
+        initMap(targetEl, locationArr, infoTemplate);
+
+    });
+  });
 
   </script>
 </body>
