@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Google Map</title>
+
+<style>
+#draw-map {
+	margin: 0;
+	padding: 0;
+	height: 500px;
+	max-width: none;
+}
+#draw-map img {
+	max-width: none !important;
+}
+.info-window--box {
+	display: flex;
+}
+.box-left {
+    float: left;
+}
+.box-left img.small {
+    width: 52px;
+    height: 52px;
+}
+.box-left img.medium {
+    width: 102px;
+    height: 102px;
+}
+.box-left img.large {
+    width: 152px;
+    height: 152px;
+}
+.box-right {
+    float: right;
+    margin-left: 15px;
+}
+
+.info-window-template, .map-directions {
+    display: none;
+}
+
+</style>
+</head>
+<body>
+
+<div class="google-map">
+
+    <div class="draw-map" id="draw-map"></div>
+
+</div>
+
+
+
+  <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDRL_xJqGkwWPG0cg4wrCV9u6CO6H7jheI"></script>
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+  
+  <script>
+      var geocoder;
+      var map;
+      var directionsDisplay;
+      var directionsService = new google.maps.DirectionsService();
+      // var locations = [
+      //   ['Washington', 46.914036, -120.162564, 1],
+      //   ['California', 38.019767, -122.389345, 2],
+      //   ['New Mexico', 33.769564, -106.490183, 3],
+      //   ['Texas', 32.687817, -96.828970, 4],
+      //   ['Arkansas', 34.837825, -91.960328, 5],
+      //   ['Missouri', 38.199336, -91.656038, 6],
+      //   ['Lake Michigan', 41.923978, -87.548120, 7],
+      //   ['Wisconsin', 44.636959, -91.503893, 8],
+      //   ['Minnesota', 46.238171, -95.687882, 9],
+      //   ['North Dakotah', 47.537830, -100.632598, 10]
+      // ];
+
+      var locations = [
+          ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+          ['Bondi Beach', -33.890542, 151.274856, 4],
+          ['Coogee Beach', -33.923036, 151.259052, 5],
+          ['Maroubra Beach', -33.950198, 151.259302, 1],
+          ['Cronulla Beach', -34.028249, 151.157507, 3],
+          ['Boorkve', -33.765830, 151.269958, 6],
+          ['Forest Ville', -33.761498, 151.211304, 7],
+          ['Chatswood', -33.801448, 151.177315, 8],
+          ['Ryde', -33.815712, 151.097665, 9],
+          ['Bush West', -33.857917, 151.070199, 10],
+          ['Wiley park', -33.929448, 151.071996, 11],
+          ['Hurst', -33.986919, 151.110681, 12],
+          ['Sylvi',-34.008876, 151.110107, 13],
+          ['Manly Beach', -33.80010128657071, 151.28747820854187, 14]
+      ];
+
+      function initialize() {
+          directionsDisplay = new google.maps.DirectionsRenderer();
+
+
+          var map = new google.maps.Map(document.getElementById('draw-map'), {
+              zoom: 10,
+              center: new google.maps.LatLng(33.01, -122.50),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+          directionsDisplay.setMap(map);
+          var infowindow = new google.maps.InfoWindow();
+
+          var marker, i;
+          var request = {
+              travelMode: google.maps.TravelMode.DRIVING
+          };
+          for (i = 0; i < locations.length; i++) {
+              marker = new google.maps.Marker({
+                  position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                  map: map
+              });
+
+              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                  return function() {
+                      infowindow.setContent(locations[i][0]);
+                      infowindow.open(map, marker);
+                  }
+              })(marker, i));
+              if (i == 0) request.origin = marker.getPosition();
+              else if (i == locations.length - 1) request.destination = marker.getPosition();
+              else {
+                  if (!request.waypoints) request.waypoints = [];
+                  request.waypoints.push({
+                      location: marker.getPosition(),
+                      stopover: true
+                  });
+              }
+
+          }
+          directionsService.route(request, function(result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                  directionsDisplay.setDirections(result);
+              }
+          });
+      }
+      google.maps.event.addDomListener(window, "load", initialize);
+
+  </script>
+</body>
+</html>
